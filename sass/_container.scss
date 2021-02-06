@@ -20,12 +20,28 @@
 
         display: flex;
         justify-content: space-evenly;
+         
+        .name {
+            font-size: 34px;
+            font-weight: 700;
+            padding: 2rem;
+        }
+        .temp {
+            font-size: 34px;
+            font-weight: 700;
+            padding: 2rem;
+        }
+        .desc {
+            font-size: 34px;
+            font-weight: 700;
+            padding: 2rem;
+        }
     }
 
     &__weatherItem{
         justify-content: space-evenly;
         flex-direction: row;
-        border: 1px solid blue;
+
         height: 200px;
         width: 250px;
         margin-bottom: 5rem;

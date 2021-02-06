@@ -246,6 +246,24 @@ html {
           justify-content: space-evenly;
 }
 
+.container__weather .name {
+  font-size: 34px;
+  font-weight: 700;
+  padding: 2rem;
+}
+
+.container__weather .temp {
+  font-size: 34px;
+  font-weight: 700;
+  padding: 2rem;
+}
+
+.container__weather .desc {
+  font-size: 34px;
+  font-weight: 700;
+  padding: 2rem;
+}
+
 .container__weatherItem {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
@@ -254,7 +272,6 @@ html {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  border: 1px solid blue;
   height: 200px;
   width: 250px;
   margin-bottom: 5rem;
