@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/sass/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>WeatherToday</title>
+   
 </head>
 <body>
 <!-- TODO: 1) header 2) Search-bar/option-menu for different cities/countries to figure out weather. 3) nice design to showcase the weather.-->
@@ -55,13 +58,70 @@
             <input class="search" type="text" id="search" />
             <input class="submit" type="submit" value="Submit"/>
         </div>
-        <h1>Are you traveling?<br/> Look no more<br/> Search for city above</h1>
+       
+        <div class="checkboxes">
+            <input type="checkbox" name="weather"/>
+            <label  for="weather">Weather in city</label>
+            <input type="checkbox" name="attractions"/>
+            <label  for="attractions">Attractions in city</label>
+            <input type="checkbox" name="aToZ"/>
+            <label for="AToZ">A - Z</label>
+        </div>
+
     </div>
+   
+</section>
+
+<section class="container">
+
+    <div class ="container__items">
+
+        <h2>Weather</h2>
+        <div class="container__weather">
+            <div class="container__weatherItem">
+                <div class="name"></div>
+            </div>
+            <div class="container__weatherItem">
+                <div class="temp"></div>
+            </div>
+            <div class="container__weatherItem">
+                <div class="desc"></div>
+            </div>  
+
+        </div>
+            <h2>Attractions</h2>
+        <div class="container__attractions">
+            
+            <div class="container__attraction">
+
+            </div>
+            <div class="container__attraction">
+                
+            </div>
+            <div class="container__attraction">
+                
+            </div>
+            <div class="container__attraction">
+                
+            </div>
+            <div class="container__attraction">
+                
+            </div>
+            <div class="container__attraction">
+                
+            </div>
+        </div>
+
+    </div>
+
 
 </section>
 
 
 
+
+
+<script src="script.js"></script>
     
 </body>
 </html>

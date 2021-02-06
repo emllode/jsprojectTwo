@@ -1,0 +1,56 @@
+.container {
+
+    padding-left: 20em;
+    padding-right: 20em;
+  
+
+    text-align: center;
+
+
+    &__items {
+
+
+        background-color: white;
+        border-radius: 10px;
+        position:static;
+    }
+
+    &__weather {
+    
+
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    &__weatherItem{
+        justify-content: space-evenly;
+        flex-direction: row;
+        border: 1px solid blue;
+        height: 200px;
+        width: 250px;
+        margin-bottom: 5rem;
+        padding: 25px;
+    }
+
+    &__attractions {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 15px;
+        margin-left:11rem;
+        
+    }
+
+    &__attraction {
+        
+        height: 200px;
+        width: 250px;
+
+        border: 1px solid red;
+    }
+
+    
+
+
+
+
+}

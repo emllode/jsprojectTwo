@@ -211,4 +211,68 @@ html {
   -webkit-transform: scale(1.03);
           transform: scale(1.03);
 }
+
+.checkboxes {
+  text-align: center;
+}
+
+.checkboxes input {
+  width: 20px;
+  height: 20px;
+}
+
+.checkboxes label {
+  font-size: 20px;
+}
+
+.container {
+  padding-left: 20em;
+  padding-right: 20em;
+  text-align: center;
+}
+
+.container__items {
+  background-color: white;
+  border-radius: 10px;
+  position: static;
+}
+
+.container__weather {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.container__weatherItem {
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  border: 1px solid blue;
+  height: 200px;
+  width: 250px;
+  margin-bottom: 5rem;
+  padding: 25px;
+}
+
+.container__attractions {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+  margin-left: 11rem;
+}
+
+.container__attraction {
+  height: 200px;
+  width: 250px;
+  border: 1px solid red;
+}
 /*# sourceMappingURL=style.css.map */
