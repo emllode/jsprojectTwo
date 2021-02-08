@@ -64,8 +64,9 @@ const token = `&client_id=${clientID}&client_secret=${clientSecret}&v=${todaysDa
      .then(response =>  response.json())
      .then( data => {
    
-        let location = data.response.venues.map((l) => l.name)
-        newDivs(location);
+        let location = data.response.venues.map((l) => l.name)   
+        location.forEach(e => newDivs(e));
+       
     
      })
 }
@@ -74,13 +75,11 @@ const token = `&client_id=${clientID}&client_secret=${clientSecret}&v=${todaysDa
     function newDivs(d) {
         let mainDiv = document.querySelector('.container__attractions');
 
-        for(i = 0; i < d.length; i++)
-        {
             let newDiv = document.createElement('div');
             newDiv.className = 'container__attraction';
             newDiv.innerHTML = d;
             mainDiv.prepend(newDiv)
-        }
+        
     }
 
 
@@ -98,7 +97,7 @@ const token = `&client_id=${clientID}&client_secret=${clientSecret}&v=${todaysDa
         let descValue = data['weather'][0]['description'];
 
         nameOfCity.innerHTML = nameValue;
-        temp.innerHTML = tempValue - 273; //förändra från kelvin till celsius 
+        temp.innerHTML = tempValue - 273 +"&deg"; //förändra från kelvin till celsius 
         desc.innerHTML = descValue;
     })
     
