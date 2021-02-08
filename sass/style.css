@@ -222,19 +222,21 @@ html {
 }
 
 .checkboxes label {
-  font-size: 20px;
+  font-size: 130%;
 }
 
 .container {
-  padding-left: 20em;
-  padding-right: 20em;
+  padding-left: 10%;
+  padding-right: 10%;
   text-align: center;
 }
 
 .container__items {
   background-color: white;
-  border-radius: 10px;
+  border-radius: 30px;
   position: static;
+  -webkit-box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
+          box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
 }
 
 .container__weather {
@@ -272,7 +274,7 @@ html {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  height: 200px;
+  height: 250px;
   width: 250px;
   margin-bottom: 5rem;
   padding: 25px;
@@ -281,15 +283,20 @@ html {
 .container__attractions {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
   gap: 15px;
-  margin-left: 11rem;
 }
 
 .container__attraction {
-  height: 200px;
-  width: 250px;
-  border: 1px solid red;
+  min-height: 150px;
+  font-size: 20px;
+  font-weight: 300;
+  padding-left: 10rem;
+  padding-right: 10rem;
+}
+
+.container h2 {
+  font-size: 38px;
 }
 /*# sourceMappingURL=style.css.map */

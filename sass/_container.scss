@@ -1,7 +1,7 @@
 .container {
 
-    padding-left: 20em;
-    padding-right: 20em;
+    padding-left: 10%;
+    padding-right: 10%;
   
 
     text-align: center;
@@ -11,15 +11,18 @@
 
 
         background-color: white;
-        border-radius: 10px;
+        border-radius: 30px;
         position:static;
+        box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
+        
     }
 
     &__weather {
     
-
         display: flex;
         justify-content: space-evenly;
+        
+        
          
         .name {
             font-size: 34px;
@@ -42,7 +45,7 @@
         justify-content: space-evenly;
         flex-direction: row;
 
-        height: 200px;
+        height: 250px;
         width: 250px;
         margin-bottom: 5rem;
         padding: 25px;
@@ -50,18 +53,26 @@
 
     &__attractions {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 15px;
-        margin-left:11rem;
         
+   
+ 
     }
 
     &__attraction {
-        
-        height: 200px;
-        width: 250px;
+        min-height: 150px;
+        font-size: 20px;
+        font-weight:300;
+        padding-left: 10rem;
+        padding-right: 10rem;
 
-        border: 1px solid red;
+
+  
+    }
+
+    h2 {
+        font-size: 38px;
     }
 
     

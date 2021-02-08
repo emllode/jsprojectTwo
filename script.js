@@ -1,5 +1,7 @@
 const submitBtn = document.querySelector('.submit');
 const inputValue = document.querySelector('.search');
+const checkboxThree = document.querySelector('.AToZChecked').checked;
+
 
 
 
@@ -8,13 +10,14 @@ submitBtn.addEventListener('click' , () => {
 
     const checkboxOne = document.getElementById("weather").checked;
     const checkboxTwo = document.querySelector('.attractionsChecked').checked;
-    const checkboxThree = document.querySelector('.AToZChecked').checked;
+ 
 
-    if(checkboxOne == true && checkboxTwo == true && checkboxThree == true) {
-        return weatherFetch();
-
+    if(checkboxOne == true && checkboxTwo == true) {   
+        return twoAPI();
     }
+
     else if(checkboxTwo == true && checkboxThree == true) {
+        return attractionsFetch();
 
     }
     else if (checkboxOne == true ) {
@@ -34,7 +37,10 @@ submitBtn.addEventListener('click' , () => {
 })
 
 
-
+function twoAPI() {
+    attractionsFetch()
+    weatherFetch()
+}
 
 /* -------------- Todays date -------------- */
 let today = new Date();
@@ -50,25 +56,32 @@ const clientID ='WDLO4HOSFVLGZ35SQ2B4UU5VZ1IC2FR4MPO5XXT3YPKQMYGE&';
 const clientSecret = 'HAYLD2KRQQI2SRWW1IRJ1TPMT2IZP5BVR5N2DVUZAYPCJLJU';
 const token = `&client_id=${clientID}&client_secret=${clientSecret}&v=${todaysDate}`
 
+ 
 
-
+    /*        -------------- API-fetch for attractions -------------- */
     function attractionsFetch() {
-    //const nameOfAttraction = document.querySelector('.nameAttraction');
-    const locationAttraction = document.querySelector('.locationAttraction');
-    fetch(`https://api.foursquare.com/v2/venues/search?${token}&near=`+inputValue.value+`&intent=browse&radius=10000&limit=10`)   
-     .then(response => response.json())
-     .then(data => {
-        // let nameValue = data['response']['venues']['name'];
-        console.log(data)
-         let location = data.response.venues[0].name
-         console.log(location)
-       //  nameOfAttraction.innerHTML = nameValue;
-        locationAttraction.innerHTML = location;
-
-
-
+     fetch(`https://api.foursquare.com/v2/venues/search?${token}&near=`+inputValue.value+`&intent=browse&radius=10000&limit=10`)   
+     .then(response =>  response.json())
+     .then( data => {
+   
+        let location = data.response.venues.map((l) => l.name)
+        newDivs(location);
+    
      })
 }
+
+    /*       --------- function to handle new divs from attractions ----------------- */
+    function newDivs(d) {
+        let mainDiv = document.querySelector('.container__attractions');
+
+        for(i = 0; i < d.length; i++)
+        {
+            let newDiv = document.createElement('div');
+            newDiv.className = 'container__attraction';
+            newDiv.innerHTML = d;
+            mainDiv.prepend(newDiv)
+        }
+    }
 
 
     /*      -----------      API-fetch for weather        ---------------    */
