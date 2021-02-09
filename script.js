@@ -1,19 +1,26 @@
 const submitBtn = document.querySelector('.submit');
 const inputValue = document.querySelector('.search');
 
+
 /* ----------------- Event to check checkboxes with button pushed ----------- */
 submitBtn.addEventListener('click' , () => {
+
     const checkboxOne = document.getElementById("weather").checked;
     const checkboxTwo = document.querySelector('.attractionsChecked').checked;
     const checkboxThree = document.querySelector('.AToZChecked').checked;
+
+   
+
     if(checkboxOne == true && checkboxTwo == true) {   
         return twoAPI();
+        
     }
     else if(checkboxTwo == true && checkboxThree == true) {
         return AtoZ();
     }
     else if (checkboxOne == true ) {
         return weatherFetch();
+        
     }
     else if (checkboxTwo == true) {
         attractionsFetch()
@@ -29,9 +36,18 @@ submitBtn.addEventListener('click' , () => {
 })
 
 
+/* ------ Toggle once to show container block ----- */
+function myFunction() {
+    const x = document.querySelector('.container');
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } 
+  }
+
 function twoAPI() {
     attractionsFetch()
     weatherFetch()
+    myFunction()
 }
 
 
@@ -60,7 +76,9 @@ const token = `${url}&client_id=${clientID}&client_secret=${clientSecret}&v=${to
         let location = data.response.venues.map((l) => l.name)  
         location.forEach(e => newDivs(e)); 
      
+        
      })
+     myFunction()
      .catch(() => alert("That city doesn't exist."))
 }
 
@@ -73,6 +91,7 @@ const token = `${url}&client_id=${clientID}&client_secret=${clientSecret}&v=${to
        location.sort().reverse().forEach(e => newDivs(e)); 
     
     })
+    myFunction()
     .catch(() => alert("That city doesn't exist."))
     
 }
@@ -111,6 +130,7 @@ const token = `${url}&client_id=${clientID}&client_secret=${clientSecret}&v=${to
         desc.innerHTML = descValue;
     })  
 // Fångar om staden inte existerar i API:n och slänger ut ett alert 
+myFunction()
 .catch(() => alert("That city doesn't exist."))
 }
 
