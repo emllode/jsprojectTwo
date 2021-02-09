@@ -1,20 +1,16 @@
 const submitBtn = document.querySelector('.submit');
 const inputValue = document.querySelector('.search');
-const checkboxThree = document.querySelector('.AToZChecked').checked;
-
-
-
-
 
 /* ----------------- Event to check checkboxes with button pushed ----------- */
 submitBtn.addEventListener('click' , () => {
     const checkboxOne = document.getElementById("weather").checked;
     const checkboxTwo = document.querySelector('.attractionsChecked').checked;
+    const checkboxThree = document.querySelector('.AToZChecked').checked;
     if(checkboxOne == true && checkboxTwo == true) {   
         return twoAPI();
     }
     else if(checkboxTwo == true && checkboxThree == true) {
-        return attractionsFetch().sorted();
+        return AtoZ();
     }
     else if (checkboxOne == true ) {
         return weatherFetch();
@@ -38,6 +34,7 @@ function twoAPI() {
     weatherFetch()
 }
 
+
 /* -------------- Todays date -------------- */
 let today = new Date();
 let dd = String(today.getDate()).padStart(2, '0');
@@ -60,10 +57,24 @@ const token = `${url}&client_id=${clientID}&client_secret=${clientSecret}&v=${to
       fetch(`${token}&near=`+inputValue.value+`&intent=browse&radius=10000&limit=10`)   
      .then(response =>   response.json())
      .then( data => {   
-        let location = data.response.venues.map((l) => l.name)   
-        location.forEach(e => newDivs(e));   
+        let location = data.response.venues.map((l) => l.name)  
+        location.forEach(e => newDivs(e)); 
+     
      })
      .catch(() => alert("That city doesn't exist."))
+}
+
+ /* ------------- Vill lösa så denna finns i attractionsFetch bara. A - ------------ */
+    function AtoZ(){
+    fetch(`${token}&near=`+inputValue.value+`&intent=browse&radius=10000&limit=10`)   
+    .then(response =>   response.json())
+    .then( data => {   
+       let location = data.response.venues.map((l) => l.name)  
+       location.sort().reverse().forEach(e => newDivs(e)); 
+    
+    })
+    .catch(() => alert("That city doesn't exist."))
+    
 }
 
     /*       --------- function to create new divs from attractions-fetch ----------------- */
@@ -81,6 +92,7 @@ const token = `${url}&client_id=${clientID}&client_secret=${clientSecret}&v=${to
     const nameOfCity = document.querySelector('.name');
     const temp = document.querySelector('.temp');
     const desc = document.querySelector('.desc');
+
     const urlWeather = 'https://api.openweathermap.org/data/2.5/weather?q='
     const weatherId = '&appid=9c8183e6cf109ae7637aab10a479748e'
     //Fetchar api för weather. Tar in input i url.
@@ -90,7 +102,10 @@ const token = `${url}&client_id=${clientID}&client_secret=${clientSecret}&v=${to
         let nameValue = data['name'];
         let tempValue = Math.round(data['main']['temp']); //avrundar till heltal
         let descValue = data['weather'][0]['description'];
-
+        let iconCode = data['weather'][0]['icon'];
+        let iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+        
+        document.getElementById('iconWeather').src = iconUrl;
         nameOfCity.innerHTML = nameValue;
         temp.innerHTML = tempValue - 273 +"&deg"; //förändra från kelvin till celsius 
         desc.innerHTML = descValue;

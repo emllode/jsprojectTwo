@@ -259,6 +259,11 @@ html {
   font-weight: 400;
 }
 
+.container__weather #iconWeather {
+  min-width: 5rem;
+  min-height: 5rem;
+}
+
 .container__weather .temp {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 20%;
