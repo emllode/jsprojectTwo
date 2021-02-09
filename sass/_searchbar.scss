@@ -1,7 +1,7 @@
 .searchbar {
     color: black;
     margin-top: 15rem;
-
+    text-decoration: none;
   
     
     h1, h2 {
@@ -39,35 +39,35 @@
         text-align: center;
         position: relative;
         height: 80px;
-        font-size: 0;
-        top: 10%;
+        font-size: 0px;
         transform: translateY(-50%);
+        
     }
+
     
     .search {
         padding: 0 30px;
         font-size: 18px;
         width: 60%;
-        max-width: 400px;
+        max-width: 600px;
         height: 80px;
-        border: 1px solid grey;
-        border-radius: 20px 0 0 20px;
+        border: 5px solid black;
+        border-radius: 70px 0 0 70px;
     }
     
     .submit {
         cursor: pointer;
         border: none;
-        background-size: 35px 35px;
         background-color: black;
         color: white;
-        border-radius: 0 20px 20px 0;
-        padding: 15px 25px;
+        border-radius: 0 70px 70px 0;
         display: inline-block;
         width: 150px;
         height: 80px;
+        
 
         &:hover {
-            color: rgb(182, 181, 181);
+            color: rgb(250, 152, 152);
             transform: scale(1.03);
         }
     }

@@ -6,19 +6,15 @@ const checkboxThree = document.querySelector('.AToZChecked').checked;
 
 
 
+/* ----------------- Event to check checkboxes with button pushed ----------- */
 submitBtn.addEventListener('click' , () => {
-
     const checkboxOne = document.getElementById("weather").checked;
     const checkboxTwo = document.querySelector('.attractionsChecked').checked;
- 
-
     if(checkboxOne == true && checkboxTwo == true) {   
         return twoAPI();
     }
-
     else if(checkboxTwo == true && checkboxThree == true) {
-        return attractionsFetch();
-
+        return attractionsFetch().sorted();
     }
     else if (checkboxOne == true ) {
         return weatherFetch();
@@ -51,35 +47,32 @@ let yyyy = today.getFullYear();
 let todaysDate = `${yyyy}${mm}${dd}`;
 
 
-/*----------------- Token for FourSquare with date ------------ */
+
 const clientID ='WDLO4HOSFVLGZ35SQ2B4UU5VZ1IC2FR4MPO5XXT3YPKQMYGE&';
 const clientSecret = 'HAYLD2KRQQI2SRWW1IRJ1TPMT2IZP5BVR5N2DVUZAYPCJLJU';
-const token = `&client_id=${clientID}&client_secret=${clientSecret}&v=${todaysDate}`
+const url = 'https://api.foursquare.com/v2/venues/search?';
 
- 
+/*----------------- Token for FourSquare with date ------------ */
+const token = `${url}&client_id=${clientID}&client_secret=${clientSecret}&v=${todaysDate}`
 
     /*        -------------- API-fetch for attractions -------------- */
-    function attractionsFetch() {
-     fetch(`https://api.foursquare.com/v2/venues/search?${token}&near=`+inputValue.value+`&intent=browse&radius=10000&limit=10`)   
-     .then(response =>  response.json())
-     .then( data => {
-   
+      function attractionsFetch() {
+      fetch(`${token}&near=`+inputValue.value+`&intent=browse&radius=10000&limit=10`)   
+     .then(response =>   response.json())
+     .then( data => {   
         let location = data.response.venues.map((l) => l.name)   
-        location.forEach(e => newDivs(e));
-       
-    
+        location.forEach(e => newDivs(e));   
      })
+     .catch(() => alert("That city doesn't exist."))
 }
 
-    /*       --------- function to handle new divs from attractions ----------------- */
+    /*       --------- function to create new divs from attractions-fetch ----------------- */
     function newDivs(d) {
         let mainDiv = document.querySelector('.container__attractions');
-
             let newDiv = document.createElement('div');
             newDiv.className = 'container__attraction';
             newDiv.innerHTML = d;
-            mainDiv.prepend(newDiv)
-        
+            mainDiv.prepend(newDiv)      
     }
 
 
@@ -88,8 +81,10 @@ const token = `&client_id=${clientID}&client_secret=${clientSecret}&v=${todaysDa
     const nameOfCity = document.querySelector('.name');
     const temp = document.querySelector('.temp');
     const desc = document.querySelector('.desc');
+    const urlWeather = 'https://api.openweathermap.org/data/2.5/weather?q='
+    const weatherId = '&appid=9c8183e6cf109ae7637aab10a479748e'
     //Fetchar api för weather. Tar in input i url.
-    fetch('https://api.openweathermap.org/data/2.5/weather?q='+inputValue.value+'&appid=9c8183e6cf109ae7637aab10a479748e')
+    fetch(`${urlWeather}`+inputValue.value+`${weatherId}`)
     .then(response =>  response.json())
     .then(data =>  {
         let nameValue = data['name'];
@@ -99,9 +94,10 @@ const token = `&client_id=${clientID}&client_secret=${clientSecret}&v=${todaysDa
         nameOfCity.innerHTML = nameValue;
         temp.innerHTML = tempValue - 273 +"&deg"; //förändra från kelvin till celsius 
         desc.innerHTML = descValue;
-    })
-    
+    })  
 // Fångar om staden inte existerar i API:n och slänger ut ett alert 
 .catch(() => alert("That city doesn't exist."))
 }
+
+
 
