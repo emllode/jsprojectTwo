@@ -9,6 +9,7 @@ submitBtn.addEventListener('click' , () => {
     const checkboxTwo = document.querySelector('.attractionsChecked').checked;
     const checkboxThree = document.querySelector('.AToZChecked').checked;
 
+    myFunction();
    
 
     if(checkboxOne == true && checkboxTwo == true) {   
@@ -36,7 +37,7 @@ submitBtn.addEventListener('click' , () => {
 })
 
 
-/* ------ Toggle once to show container block ----- */
+/* Försöker lösa så jag kan toggla */
 function myFunction() {
     const x = document.querySelector('.container');
     if (x.style.display === "none") {
@@ -47,7 +48,6 @@ function myFunction() {
 function twoAPI() {
     attractionsFetch()
     weatherFetch()
-    myFunction()
 }
 
 
@@ -76,9 +76,7 @@ const token = `${url}&client_id=${clientID}&client_secret=${clientSecret}&v=${to
         let location = data.response.venues.map((l) => l.name)  
         location.forEach(e => newDivs(e)); 
      
-        
      })
-     myFunction()
      .catch(() => alert("That city doesn't exist."))
 }
 
@@ -91,7 +89,6 @@ const token = `${url}&client_id=${clientID}&client_secret=${clientSecret}&v=${to
        location.sort().reverse().forEach(e => newDivs(e)); 
     
     })
-    myFunction()
     .catch(() => alert("That city doesn't exist."))
     
 }
@@ -130,7 +127,6 @@ const token = `${url}&client_id=${clientID}&client_secret=${clientSecret}&v=${to
         desc.innerHTML = descValue;
     })  
 // Fångar om staden inte existerar i API:n och slänger ut ett alert 
-myFunction()
 .catch(() => alert("That city doesn't exist."))
 }
 
