@@ -104,9 +104,10 @@ function weatherFetch() {
     "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
   const weatherId = "&appid=9c8183e6cf109ae7637aab10a479748e";
   //Fetchar api för weather. Tar in input i url.
-  fetch(`${urlWeather}` + inputValue.value + `${weatherId}`)
-    .then((r) => r.json())
+  fetch(`${urlWeather}` + inputValue.value + `${weatherId}`) //Fetchar URL för nå API:n
+    .then((r) => r.json()) //slänger in det i JSON format + inväntar så det laddas klart.
     .then((data) => {
+      //Möjlighet att plocka data från JSON filen
       let nameValue = data["name"];
       let tempValue = Math.round(data["main"]["temp"]); //avrundar till heltal
       let descValue = data["weather"][0]["description"];
