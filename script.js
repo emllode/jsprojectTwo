@@ -1,3 +1,9 @@
+/* 
+Använder fetch + promise när jag använder mina API:er. Fetchar URL och inväntar response genom .then
+och sedan får jag ett objekt som jag då manipulerar och tar ut den informationen jag vill ha som jag
+sedan använder DOM-kod för att publicera på min hemsida.
+ */
+
 const submitBtn = document.querySelector(".submit");
 const inputValue = document.querySelector(".search");
 
@@ -7,7 +13,7 @@ submitBtn.addEventListener("click", () => {
   const checkboxTwo = document.querySelector(".attractionsChecked").checked;
   const checkboxThree = document.querySelector(".AToZChecked").checked;
 
-  myFunction();
+  toggleForWindow(); //Toggle första gångne man söker.
 
   if (checkboxOne == true && checkboxTwo == true && checkboxThree == true) {
     return allThree();
@@ -26,21 +32,21 @@ submitBtn.addEventListener("click", () => {
   }
 });
 
-/* Försöker lösa så jag kan toggla */
-function myFunction() {
+/* Toggle first time you do search */
+function toggleForWindow() {
   const x = document.querySelector(".container");
   if (x.style.display === "none") {
     x.style.display = "block";
   }
 }
-function allThree() {
-  weatherFetch();
-  AtoZ();
-}
 
-function twoAPI() {
-  attractionsFetch();
-  weatherFetch();
+/*       --------- function to create new divs to put inside attractions ----------------- */
+function newDivs(d) {
+  let mainDiv = document.querySelector(".container__attractions");
+  let newDiv = document.createElement("div");
+  newDiv.className = "container__attraction";
+  newDiv.innerHTML = d;
+  mainDiv.prepend(newDiv);
 }
 
 /* -------------- Todays date -------------- */
@@ -59,6 +65,7 @@ const url = "https://api.foursquare.com/v2/venues/search?";
 const token = `${url}&client_id=${clientID}&client_secret=${clientSecret}&v=${todaysDate}`;
 
 /*        -------------- API-fetch for attractions -------------- */
+
 function attractionsFetch() {
   fetch(
     `${token}&near=` + inputValue.value + `&intent=browse&radius=10000&limit=10`
@@ -71,7 +78,7 @@ function attractionsFetch() {
     .catch(() => alert("That city doesn't exist."));
 }
 
-/* ------------- Vill lösa så denna finns i attractionsFetch bara. A - ------------ */
+/* ------------- Fick inte ett if-statement att funka i attractionFetch koden, så fick skapa ny funktion för AtoZ.... ------------ */
 function AtoZ() {
   fetch(
     `${token}&near=` + inputValue.value + `&intent=browse&radius=10000&limit=10`
@@ -85,15 +92,6 @@ function AtoZ() {
         .forEach((e) => newDivs(e));
     })
     .catch(() => alert("That city doesn't exist."));
-}
-
-/*       --------- function to create new divs from attractions-fetch ----------------- */
-function newDivs(d) {
-  let mainDiv = document.querySelector(".container__attractions");
-  let newDiv = document.createElement("div");
-  newDiv.className = "container__attraction";
-  newDiv.innerHTML = d;
-  mainDiv.prepend(newDiv);
 }
 
 /*      -----------      API-fetch for weather        ---------------    */
@@ -117,9 +115,19 @@ function weatherFetch() {
 
       document.getElementById("iconWeather").src = iconUrl;
       nameOfCity.innerHTML = nameValue;
-      temp.innerHTML = tempValue + "&deg"; //förändra från kelvin till celsius
+      temp.innerHTML = tempValue + "&deg";
       desc.innerHTML = descValue;
     })
     // Fångar om staden inte existerar i API:n och slänger ut ett alert
     .catch(() => alert("That city doesn't exist."));
+}
+
+/* Skapar nya funktioner som tar andra fumktioner så jag kan tillkalal dom i min if/else. */
+function allThree() {
+  weatherFetch();
+  AtoZ();
+}
+function twoAPI() {
+  attractionsFetch();
+  weatherFetch();
 }
