@@ -73,7 +73,10 @@ function attractionsFetch() {
     .then((response) => response.json())
     .then((data) => {
       let location = data.response.venues.map((l) => l.name);
+      let locationAddress = data.response.venues.map((a) => a.categories);
+
       location.forEach((e) => newDivs(e));
+      locationAddress.forEach((p) => console.log(p));
     })
     .catch(() => alert("That city doesn't exist."));
 }
@@ -113,6 +116,8 @@ function weatherFetch() {
       let descValue = data["weather"][0]["description"];
       let iconCode = data["weather"][0]["icon"];
       let iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+
+      console.log(r);
 
       document.getElementById("iconWeather").src = iconUrl;
       nameOfCity.innerHTML = nameValue;
